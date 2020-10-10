@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">Answers</li>
+    </ol>
+ 
+  
+    <table class="table mb-0">
+      <thead>
+        <tr>
+          <th>Subject</th>
+          <th>Standard</th>
+          <th>Section</th>
+          <th>Roll</th>
+
+
+        </tr>
+      </thead>
+      
+      <tbody>
+
+        {% for answer in answers %}
+          {% if answer.quiz_name == 'SCIENCE' or answer.quiz_name == 'enter paper name' %}
+              <tr>
+                <td class="align-left">{{ answer.quiz_name }}</td>
+                <td class="align-left">{{ answer.subject }}</td>
+                <td class="align-left">{{ answer.section }}</td>
+                <td class="align-left">{{ answer.roll }}</td>
+
+
+
+              </tr>
+
+              <tr>
+                <td class="align-middle"><embed src="{{answer.answer.url}}" alt="none" align="text-center" width="500px" height="300px" class="image-responsive"></td>
+                
+              </tr>
+          {% else %}
+              &nbsp;
+          {% endif %}
+        {% empty %}
+          <tr>
+            <td class="bg-light text-center font-italic" colspan="5">No answers yet.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

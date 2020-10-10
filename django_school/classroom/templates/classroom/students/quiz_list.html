@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% include 'classroom/students/_header.html' with active='new' %}
+ 
+</select>
+  <div class="card">
+    <table class="table mb-0">
+      <thead>
+        <tr>
+          
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for quiz in quizzes %}
+          {% if quiz.today == quiz.date %}
+          
+              <tr>
+              <th>SUBJECT</th>
+
+              <td class="align-middle">{{ quiz.name }}</td>
+              <tr>
+              <th>CLASS</th>
+
+                <td class="align-left">
+                {{ quiz.subject.get_html_badge }}</td>
+                
+              </tr>
+               <tr>
+                <th>DATE</th>
+                <td class="align-right">{{quiz.date}}</td>
+
+              </tr>
+
+              <tr>
+                <th>START</th>
+                <td class="align-right">{{quiz.start}} - {{quiz.end}}</td>
+              </tr>
+              
+                
+              <tr>
+                <td class="align-right"><embed src="{{quiz.pdf.url}}" alt="none" align="text-center" width="500px" height="400px" class="image-responsive"></td>
+                
+              </tr>
+              <tr>
+                <td style="text-align: center;"><a href="{% url 'students:add_answer' %}"><button class="btn btn-info btn-lg">UPLOAD</button></a></td>
+              </tr>
+
+          
+          {% else %}
+              &nbsp;
+          {% endif %}
+        {% empty %}
+          <tr>
+                <td class="bg-light text-center font-italic" colspan="5">You don't have any exams today!</td>
+              </tr>
+
+          
+        
+        {% endfor %}
+
+
+
+        
+      </tbody>
+        
+    </table>
+  </div>
+{% endblock %}

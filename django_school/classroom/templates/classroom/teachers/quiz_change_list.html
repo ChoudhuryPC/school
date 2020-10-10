@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">My Quizzes</li>
+    </ol>
+  </nav>
+  <h2 class="mb-3">My Exam Papers</h2>
+  <a href="{% url 'teachers:quiz_add' %}" class="btn btn-primary mb-3" role="button">Add Paper</a>
+    
+  <a href="{% url 'teachers:quiz_answers' %}" class="btn btn-danger mb-3" role="button">ANSWERS</a>
+            
+  <div class="card">
+    <table class="table mb-0">
+      <thead>
+        <tr>
+          <th>Paper</th>
+          <th>Standard</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for quiz in quizzes %}
+          <tr>
+            <td class="align-middle"><a href="{% url 'teachers:quiz_change' quiz.pk %}">{{ quiz.name }}</a></td>
+            <td class="align-left">
+            {{ quiz.subject.get_html_badge }}</td>
+            <td class="align-left">{{ quiz.date }}</td>
+           
+
+            <td class="align-left">
+              <a href="{% url 'teachers:quiz_delete' quiz.pk %}" class="btn btn-danger">Delete</a>
+            </td>
+
+          </tr>
+          <tr>
+            <td class="align-right"><embed src="{{quiz.pdf.url}}" alt="none" align="text-center" width="200px" height="300px" class="image-responsive"></td>
+            
+          </tr>
+          
+            
+        {% empty %}
+          <tr>
+            <td class="bg-light text-center font-italic" colspan="5">You haven't created any quiz yet.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
