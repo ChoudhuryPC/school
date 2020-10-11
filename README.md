@@ -5,7 +5,7 @@
 
 This is an example project to illustrate an implementation of multiple user types. In this Django app, teachers can create question papers and students can sign up and take up papers related to their class and subject,Also it has time feature attached with the question papers so that the papers are available for the students to answer on a particular day at a particular time.
 
-![Django School Screenshot](https://simpleisbetterthancomplex.com/media/2018/01/teacher-quiz.png)
+
 
 
 
